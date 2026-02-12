@@ -13,3 +13,6 @@ func show_game_over(score, highscore):
 
 func _on_button_pressed() -> void:
 	get_tree().reload_current_scene()
+
+func _on_timer_timeout() -> void:
+	$HUD/Panel.visible = false
