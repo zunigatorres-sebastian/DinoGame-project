@@ -1,0 +1,98 @@
+[gd_scene load_steps=16 format=4 uid="uid://lhgku5y4cspa"]
+
+[ext_resource type="Texture2D" uid="uid://cieu86xmags4o" path="res://Sprites/Background/1.png" id="1_0f350"]
+[ext_resource type="Script" uid="uid://dw2afcrnal42" path="res://Scripts/level.gd" id="1_754fn"]
+[ext_resource type="Texture2D" uid="uid://bvxp3u3y25ok" path="res://Sprites/Background/Platform.png" id="1_k5f4k"]
+[ext_resource type="PackedScene" uid="uid://b7fc88u5ecoeb" path="res://Scenes/player.tscn" id="2_6phgx"]
+[ext_resource type="Texture2D" uid="uid://2e0pnwadhm1b" path="res://Sprites/Background/2.png" id="2_8c0lf"]
+[ext_resource type="Texture2D" uid="uid://cawt2xavdgglt" path="res://Sprites/Background/3.png" id="3_754fn"]
+[ext_resource type="Texture2D" uid="uid://cleseixc3100w" path="res://Sprites/Background/4.png" id="4_bvt00"]
+[ext_resource type="PackedScene" uid="uid://cmidcwl4lhcam" path="res://Scenes/large_cactus.tscn" id="8_oqgf2"]
+[ext_resource type="PackedScene" uid="uid://dpftr21kx4gmj" path="res://Scenes/medium_cactus.tscn" id="9_qxfql"]
+[ext_resource type="PackedScene" uid="uid://g0qvhuoni7r5" path="res://Scenes/small_cactus.tscn" id="10_ha31o"]
+[ext_resource type="PackedScene" uid="uid://chn2r3jf20rqa" path="res://Scenes/ui.tscn" id="11_qxfql"]
+[ext_resource type="AudioStream" uid="uid://bqtp3wqg7lb7w" path="res://Sounds/GameOver.wav" id="12_ha31o"]
+[ext_resource type="AudioStream" uid="uid://dhofgmhv6mxjl" path="res://Sounds/March.wav" id="13_pa6b8"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_81xng"]
+texture = ExtResource("1_k5f4k")
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:0/0 = 0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:1/0 = 0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:1/0 = 0
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:1/0 = 0
+2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="TileSet" id="TileSet_wqkje"]
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_81xng")
+
+[node name="Level" type="Node2D"]
+script = ExtResource("1_754fn")
+
+[node name="Background" type="Node2D" parent="."]
+
+[node name="Cloud1" type="Parallax2D" parent="Background"]
+scroll_scale = Vector2(0, 0)
+repeat_size = Vector2(576, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Cloud1"]
+position = Vector2(288, 162)
+texture = ExtResource("1_0f350")
+
+[node name="Cloud2" type="Parallax2D" parent="Background"]
+scroll_scale = Vector2(2, 2)
+repeat_size = Vector2(576, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Cloud2"]
+texture = ExtResource("2_8c0lf")
+offset = Vector2(288, 162)
+
+[node name="Cloud3" type="Parallax2D" parent="Background"]
+scroll_scale = Vector2(3, 3)
+repeat_size = Vector2(576, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Cloud3"]
+texture = ExtResource("3_754fn")
+offset = Vector2(288, 162)
+
+[node name="Cloud4" type="Parallax2D" parent="Background"]
+scroll_scale = Vector2(4, 4)
+repeat_size = Vector2(576, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Cloud4"]
+texture = ExtResource("4_bvt00")
+offset = Vector2(288, 162)
+
+[node name="Platform" type="Node2D" parent="."]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="Platform"]
+tile_map_data = PackedByteArray("AAD//xEAAAAAAAAAAAD//xIAAAABAAEAAAAAABEAAAABAAAAAAAAABIAAAABAAEAAAABABEAAAACAAAAAAABABIAAAACAAEAAAACABEAAAAAAAAAAAACABIAAAAAAAEAAAADABEAAAABAAAAAAADABIAAAABAAEAAAAEABEAAAACAAAAAAAEABIAAAACAAEAAAAFABEAAAAAAAAAAAAFABIAAAAAAAEAAAAGABEAAAABAAAAAAAGABIAAAABAAEAAAAHABEAAAACAAAAAAAHABIAAAACAAEAAAAIABEAAAAAAAAAAAAIABIAAAAAAAEAAAAJABEAAAABAAAAAAAJABIAAAABAAEAAAAKABEAAAACAAAAAAAKABIAAAACAAEAAAALABEAAAAAAAAAAAALABIAAAAAAAEAAAAMABEAAAABAAAAAAAMABIAAAABAAEAAAANABEAAAACAAAAAAANABIAAAACAAEAAAAOABEAAAAAAAAAAAAOABIAAAAAAAEAAAAPABEAAAABAAAAAAAPABIAAAABAAEAAAAQABEAAAACAAAAAAAQABIAAAACAAEAAAARABEAAAAAAAAAAAARABIAAAAAAAEAAAASABEAAAABAAAAAAASABIAAAABAAEAAAATABEAAAACAAAAAAATABIAAAACAAEAAAAUABEAAAAAAAAAAAAUABIAAAAAAAEAAAAVABEAAAABAAAAAAAVABIAAAABAAEAAAAWABEAAAACAAAAAAAWABIAAAACAAEAAAAXABEAAAAAAAAAAAAXABIAAAAAAAEAAAAYABEAAAABAAAAAAAYABIAAAABAAEAAAAZABEAAAACAAAAAAAZABIAAAACAAEAAAAaABEAAAAAAAAAAAAaABIAAAAAAAEAAAAbABEAAAABAAAAAAAbABIAAAABAAEAAAAcABEAAAACAAAAAAAcABIAAAACAAEAAAAdABEAAAAAAAAAAAAdABIAAAAAAAEAAAAeABEAAAABAAAAAAAeABIAAAABAAEAAAAfABEAAAACAAAAAAAfABIAAAACAAEAAAAgABEAAAABAAAAAAAhABEAAAABAAAAAAAiABEAAAABAAAAAAAjABEAAAABAAAAAAAkABEAAAABAAAAAAAgABIAAAABAAEAAAAhABIAAAABAAEAAAAiABIAAAABAAEAAAAjABIAAAABAAEAAAAkABIAAAABAAEAAAAkABMAAAABAAEAAAAjABMAAAABAAEAAAAiABMAAAABAAEAAAAhABMAAAABAAEAAAAgABMAAAABAAEAAAAfABMAAAABAAEAAAAeABMAAAABAAEAAAAdABMAAAABAAEAAAAcABMAAAABAAEAAAAbABMAAAABAAEAAAAaABMAAAABAAEAAAAZABMAAAABAAEAAAAYABMAAAABAAEAAAAXABMAAAABAAEAAAAWABMAAAABAAEAAAAVABMAAAABAAEAAAAUABMAAAABAAEAAAATABMAAAABAAEAAAASABMAAAABAAEAAAARABMAAAABAAEAAAAQABMAAAABAAEAAAAPABMAAAABAAEAAAAOABMAAAABAAEAAAANABMAAAABAAEAAAAMABMAAAABAAEAAAALABMAAAABAAEAAAAKABMAAAABAAEAAAAJABMAAAABAAEAAAAIABMAAAABAAEAAAAHABMAAAABAAEAAAAGABMAAAABAAEAAAAFABMAAAABAAEAAAAEABMAAAABAAEAAAADABMAAAABAAEAAAACABMAAAABAAEAAAABABMAAAABAAEAAAAAABMAAAABAAEAAAD//xMAAAABAAEAAAA=")
+tile_set = SubResource("TileSet_wqkje")
+
+[node name="Player" parent="." instance=ExtResource("2_6phgx")]
+position = Vector2(170, 264)
+
+[node name="LargeCactus" parent="." instance=ExtResource("8_oqgf2")]
+position = Vector2(0, -28)
+
+[node name="MediumCactus" parent="." instance=ExtResource("9_qxfql")]
+position = Vector2(29, -28)
+
+[node name="SmallCactus" parent="." instance=ExtResource("10_ha31o")]
+position = Vector2(57, -28)
+
+[node name="UI" parent="." instance=ExtResource("11_qxfql")]
+
+[node name="GameOver_Sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_ha31o")
+
+[node name="Music" type="AudioStreamPlayer" parent="GameOver_Sound"]
+stream = ExtResource("13_pa6b8")
+autoplay = true
